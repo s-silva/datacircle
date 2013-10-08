@@ -20,17 +20,33 @@
       var startAngle = 0.0 * Math.PI;
       var endAngle = 2.0 * Math.PI;
       var counterClockwise = false;
+      var nelm = 10;
+
+      /*
+		
+		p = 2 * pi * r
+		Npx = 2 * pi * r / nelm
+		nelm = Npx / (2 * pi * r)
+
+      */
 
       
       for(var i=0; i<16; i++)
       {
-		context.beginPath();
-		context.arc(x, y, radius + (i * 20), startAngle, endAngle, counterClockwise);
-		context.lineWidth = 15;
-		context.strokeStyle = 'black';
-		context.stroke();
-	  }
+      	radius = 15 + (i * 20);
+      	nelm = radius / 10;
 
+      	for(var j=0; j<nelm; j++)
+      	{
+      		if(Math.floor(Math.random()*2) == 1) continue;
+
+			context.beginPath();
+			context.arc(x, y, radius, 2 * Math.PI / nelm * j, 2 * Math.PI / nelm * (j + 1), counterClockwise);
+			context.lineWidth = 15;
+			context.strokeStyle = 'black';
+			context.stroke();
+		}
+	  }
 
     </script>
   </body>
